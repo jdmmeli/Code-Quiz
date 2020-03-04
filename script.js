@@ -1,22 +1,27 @@
-var timeEl = document.querySelector("#timer");
-var TitleEl = document.querySelector("#quiz-title");
-var startbuttonEL = document.querySelector("#start-button");
-var secondsLeft = 75;
-var timerInterval = "";
-var score = 75
-var highScore = 0
+var score = 0;
+var currentQuestion = -1;
+var timeLeft = 0;
+var timer;
 
-document.getElementById("start-button").addEventListener("click", function() {
-    function starttime() {
-        secondsLeft = secondsLeft - 1;
-        if (secondsLeft < 75) {
-            starttime.html = secondsLeft;
-        }
-        if (secondsLeft < 1) {
-            window.clearInterval(update);
-        }
 
-      
-    } 
-    update = setInterval("starttime", 1000); 
-});
+
+
+function start() {
+    timeLeft = 75;
+    
+    document.getElementById("timer").innerHTML = timeLeft;
+    
+    timer = setInterval(function() {
+        timeLeft--;
+       
+        document.getElementById("timer").innerHTML = timeLeft;
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            endGame(); 
+        }
+    }, 1000);
+    
+    next();
+    
+}
+
