@@ -27,11 +27,10 @@ var questions = [{
 
 
 
-var score = 0;
-var currentQuestion = -1;
+var score = 75;
 var timeLeft = 0;
 var timer;
-
+var index = 0;
 
 
 
@@ -49,8 +48,18 @@ function start() {
             endGame(); 
         }
     }, 1000);
-    
-    next();
+    renderQuestions()
     
 }
+
+
+
+function renderQuestions() {
+    var questionsIndexLength = questions.length - 1;
+    if (index <= questionsIndexLength) {
+      document.getElementById("question-title").innerHTML = questions[index].title;
+      renderQuestionChoices();
+    }
+    quizOver();
+  }
 
